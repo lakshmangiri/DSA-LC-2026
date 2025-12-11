@@ -10,6 +10,12 @@ I chose JAVA because it offers flexibility and is my preferred language for tack
 
 ### Problems
 
+1. [Merge Sorted Array](#merge-sorted-array)
+2. [Palindrome Number](#palindrome-number)
+
+---
+
+<a id="merge-sorted-array"></a>
 <details>
     <summary>
         1. Merge Sorted Array
@@ -93,4 +99,86 @@ The merged result should be stored in `num1`. To facilitate this, `num1` has a l
         p--
     }
 ```
-         
+
+
+</details>
+
+---
+
+<a id="palindrome-number"></a>
+<details>
+    <summary>
+        2. Palindrome Number
+    </summary>
+
+### Given Problem:
+
+Given an integer `x`, return `true` if `x` is a ***Palindrome*** and `false` otherwise.
+
+**Example:**
+
+    Input: x = 121
+    Output: true
+    Explanation: 121 reads as 121 from left to right as well as right to left.
+
+    Input: x = -121
+    Output: false
+    Explanation: -121 reads as -121 from left to right and 121- from right to left.
+
+    SUMMARY:
+
+    - Two given integer must read same from left to right as well as right to left.
+    - 101 reads same as left to right and right to left.
+
+Additional challenge is to try solving it without converting the integer to string.
+
+**Problem and Solution in a story:**
+
+Imagine there is a door and you are provided with a `x` number to open the door. The door opens only if the given number `x` is a palindrome. 
+
+You provide the number to the door and the door checks the number for the following:
+
+The door checks if the number is:
+
+- x < 0 => x is less than 0
+- x % 10 == 0 && x =! 0 => x is divisible by 10 meaning last digit of x is 0 and x is not 0
+
+If either of the above condition is true then the number is not a palindrome and hence return `false`.
+
+```
+If(x < 0 || (x % 10 == 0 && x != 0)) {
+    return false;
+}
+```
+
+What if the number is too big and in that case the chances of integer overflow is high, hence door checks half of the number and validates the number with the other half.
+
+- The door assumes `reversedHalf` is `0`
+
+```
+int reversedHalf = 0;
+```
+
+- The door now checks if the number `x` is greater than `reversedHalf`
+- Then extracts the lastDigit of the `x` by using the `%` by 10 which extracts the reminder when `x` is divided by `10`.
+- The extracted lastDigit is added to the `reversedHalf`
+- Then removes the last digit of `x` from the `x` as we have already added that to `reversedHalf`.
+- The door repeats the process until the x is not greater than `reversedHalf`
+
+```
+while(x > reversedHalf) {
+    int lastDigit = x % 10;
+    reversedHalf = reversedHalf * 10 + lastDigit;
+    x /= 10;
+}
+```
+
+
+- Now we have checked the number. How do we return `true` or `false`. we check with two conditions
+- If the number `x == reversedHalf` => in case the number of digits of the given number is even
+- If the number `x == reversedHalf / 10` => in case the number of digits of the given number is odd
+
+```
+x == reversedHalf || x == reversedHalf / 10
+```
+</details>
