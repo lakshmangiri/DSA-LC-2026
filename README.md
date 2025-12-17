@@ -12,6 +12,7 @@ I chose JAVA because it offers flexibility and is my preferred language for tack
 
 1. [Merge Sorted Array](#merge-sorted-array)
 2. [Palindrome Number](#palindrome-number)
+3. [Remove Element](#remove-element)
 
 ---
 
@@ -181,4 +182,51 @@ while(x > reversedHalf) {
 ```
 x == reversedHalf || x == reversedHalf / 10
 ```
+</details>
+
+---
+
+<a id="remove-element"></a>
+<details>
+    <summary>
+        3. Remove Element
+    </summary>
+
+### Given Problem:
+
+Given an integer array `nums` and an interger `val`, remove all occurances of `val` in `nums` in place. The order of the elements may be changed. Then return the number of elements in `nums` which are not equal to `val`.
+
+Consider the number of elements in `nums` which are not equal to `val` be `k`, to get accepted, you need to do the following things:
+
+- Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.
+- Return k.
+
+**EXAMPLE:**
+
+    Input: num1 = [1, 2, 3, 0, 0, 0], m = 3, num2 = [2, 5, 6], n = 3
+
+    Output: [1,2,2,3,5,6]
+
+    Explanation: The array we merged are num1 and num2. 0 are ignored as given in the question.
+
+    SUMMARY:
+
+    - Two given integer array and sorted in ascending order (smallest to largest).
+    - Two numbers given are the length of the two integer array.
+    - The end result must be stored in array `num1` meaning we are merging `num2` into `num1`.
+    - If the array has `0` then it is ignored meaning it is not counted as an element.
+    - The length of the final output is simply `m + n`.
+
+**Problem and Solution in a story:**
+
+Imagine there is a small coach with 10 passengers. The coach is allowed only to carry Female passengers and Male passengers must be de-boarded. The checker initially assumes the number of `female` passengers to be `0` (k = 0). Then, the checker checks `(for loop)` all the passengers if they are male. If the passenger is not male, the passenger is added to the final coach `(nums[k])`.
+
+ Finally, the checker after checking returns the checks `(k)`.
+
+ - int k = 0 => `number of female passengers`
+ - for loop => `checks the passenger against female`
+ - nums[k] = nums[i] => `adds the female passengers to the final list`
+ - k++ => `increases the female passengers count when the check is completed`
+ - return k => `returns the total number of female passengers`
+ 
 </details>
